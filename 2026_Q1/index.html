@@ -52,7 +52,6 @@ body {
 .kpi-value { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); line-height: 1; margin-bottom: 4px; }
 .kpi-sub { font-size: 11px; color: var(--text3); }
 
-/* KPI 보조 설명 박스 */
 .kpi-note-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 0; }
 .kpi-note { background: #f8f7f4; border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; }
 .kpi-note-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
@@ -93,7 +92,6 @@ tr:hover td { background: var(--surface2); }
 .dn { color: var(--rose); font-size: 11px; font-weight: 500; }
 .eq { color: var(--text3); font-size: 11px; }
 
-/* 결론 섹션 */
 .conclusion { background: var(--text); border-radius: var(--radius); padding: 28px 32px; color: #fff; }
 .conclusion-title { font-size: 13px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 18px; }
 .conclusion-body { display: flex; flex-direction: column; gap: 14px; }
@@ -101,10 +99,32 @@ tr:hover td { background: var(--surface2); }
 .c-num { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.3); min-width: 20px; padding-top: 2px; }
 .c-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.65; }
 .c-text strong { color: #fff; font-weight: 600; }
-.c-text .chip { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 4px; margin-left: 5px; font-weight: 500; }
-.chip-up { background: rgba(29,158,117,0.25); color: #6ee7b7; }
-.chip-dn { background: rgba(194,56,74,0.25); color: #fca5a5; }
-.chip-warn { background: rgba(217,119,6,0.25); color: #fcd34d; }
+
+/* 추가된 데이터 링크 버튼 스타일 */
+.data-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border2);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.data-link-btn:hover {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.data-link-btn svg { transition: stroke 0.2s ease; margin-right: 8px; }
+.data-link-btn:hover svg { stroke: #fff; }
 
 .footer { margin-top: 60px; padding-top: 20px; border-top: 0.5px solid var(--border2); font-size: 11px; color: var(--text3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
 .note { font-size: 11px; color: var(--text3); margin-top: 8px; line-height: 1.5; }
@@ -130,19 +150,18 @@ tr:hover td { background: var(--surface2); }
     </div>
   </div>
 
-  <!-- 핵심 지표 -->
   <div class="section">
     <div class="section-title">핵심 지표</div>
     <div class="kpi-grid">
       <div class="kpi">
         <div class="kpi-label">GA4 신규 유입 (3개월)</div>
         <div class="kpi-value">2,995</div>
-        <div class="kpi-sub">새 사용자 기준 · 쿠키/핑거프린팅 추적</div>
+        <div class="kpi-sub">새 사용자 기준</div>
       </div>
       <div class="kpi">
         <div class="kpi-label">네이버 애널리틱스 유입수 (3개월)</div>
         <div class="kpi-value">4,380</div>
-        <div class="kpi-sub">세션(방문 횟수) 기준 · 자사 내부 이동 포함</div>
+        <div class="kpi-sub">세션(방문 횟수) 기준</div>
       </div>
       <div class="kpi">
         <div class="kpi-label">검색 유입 비중 (GA4)</div>
@@ -152,23 +171,21 @@ tr:hover td { background: var(--surface2); }
       <div class="kpi">
         <div class="kpi-label">AI 검색 유입 (3개월)</div>
         <div class="kpi-value">53건</div>
-        <div class="kpi-sub">ChatGPT · Gemini · Perplexity 합산</div>
+        <div class="kpi-sub">ChatGPT · Gemini · Perplexity</div>
       </div>
     </div>
-    <!-- 두 플랫폼 수치 차이 안내 -->
     <div class="kpi-note-grid">
       <div class="kpi-note">
         <div class="kpi-note-icon">📌</div>
-        <div class="kpi-note-text"><strong>수치 차이가 나는 이유</strong> — GA4는 <strong>처음 방문한 사람(새 사용자)</strong>을 1명으로 집계하는 반면 네이버 애널리틱스는 <strong>방문 횟수(세션)</strong> 기준이라 같은 사람이 여러 번 오면 그만큼 더 집계됨.</div>
+        <div class="kpi-note-text"><strong>수치 차이 이유</strong> — GA4는 <strong>새 사용자</strong>를, 네이버는 <strong>방문 횟수</strong>를 집계하여 중복 유입 시 네이버 수치가 높게 나타남</div>
       </div>
       <div class="kpi-note">
         <div class="kpi-note-icon">📌</div>
-        <div class="kpi-note-text"><strong>신규 방문자 규모·채널 효율</strong>을 보려면 GA4를, <strong>전체 트래픽 흐름·유입 경로 다양성</strong>을 보려면 네이버 애널리틱스를 활용</div>
+        <div class="kpi-note-text"><strong>효율 분석</strong> — 신규 방문 규모는 GA4로, 트래픽 흐름과 다양성은 네이버 애널리틱스로 파악</div>
       </div>
     </div>
   </div>
 
-  <!-- 월별 추이 -->
   <div class="section">
     <div class="section-title">월별 채널별 신규 유입 추이 (GA4 기준)</div>
     <div class="card">
@@ -181,12 +198,11 @@ tr:hover td { background: var(--surface2); }
         <div class="legend-item"><span class="legend-dot" style="background:#6D4AE8"></span>블로그</div>
       </div>
       <div class="chart-wrap" style="height:280px;">
-        <canvas id="trendChart" role="img" aria-label="월별 채널별 신규 유입 추이"></canvas>
+        <canvas id="trendChart"></canvas>
       </div>
     </div>
   </div>
 
-  <!-- 채널 비중 -->
   <div class="section">
     <div class="section-title">채널 비중 (3개월 합산)</div>
     <div class="two-col">
@@ -194,38 +210,35 @@ tr:hover td { background: var(--surface2); }
         <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:14px;">GA4 — 새 사용자 기준</div>
         <div class="donut-inner">
           <div class="chart-wrap" style="height:180px;width:180px;flex-shrink:0;">
-            <canvas id="pieGA" role="img" aria-label="GA4 채널 비중"></canvas>
+            <canvas id="pieGA"></canvas>
           </div>
           <div class="donut-legend">
             <div class="donut-legend-item"><span class="legend-dot" style="background:#2563EB"></span>Google 32.6%</div>
             <div class="donut-legend-item"><span class="legend-dot" style="background:#1D9E75"></span>Naver 32.1%</div>
             <div class="donut-legend-item"><span class="legend-dot" style="background:#888780"></span>Direct 27.1%</div>
             <div class="donut-legend-item"><span class="legend-dot" style="background:#D97706"></span>AI 검색 1.8%</div>
-            <div class="donut-legend-item"><span class="legend-dot" style="background:#C2384A"></span>Bing 0.8%</div>
-            <div class="donut-legend-item"><span class="legend-dot" style="background:#b4b2a9"></span>기타 5.6%</div>
+            <div class="donut-legend-item"><span class="legend-dot" style="background:#b4b2a9"></span>기타 6.4%</div>
           </div>
         </div>
       </div>
       <div class="card">
-        <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:14px;">네이버 애널리틱스 — 유입수 기준 (자사 내부 제외)</div>
+        <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:14px;">네이버 애널리틱스 — 유입수 기준</div>
         <div class="donut-inner">
           <div class="chart-wrap" style="height:180px;width:180px;flex-shrink:0;">
-            <canvas id="pieNV" role="img" aria-label="네이버 채널 비중"></canvas>
+            <canvas id="pieNV"></canvas>
           </div>
           <div class="donut-legend">
             <div class="donut-legend-item"><span class="legend-dot" style="background:#2563EB"></span>Google 37.6%</div>
             <div class="donut-legend-item"><span class="legend-dot" style="background:#1D9E75"></span>Naver 36.7%</div>
             <div class="donut-legend-item"><span class="legend-dot" style="background:#888780"></span>Direct 19.3%</div>
             <div class="donut-legend-item"><span class="legend-dot" style="background:#D97706"></span>AI 검색 1.4%</div>
-            <div class="donut-legend-item"><span class="legend-dot" style="background:#C2384A"></span>Bing 1.0%</div>
-            <div class="donut-legend-item"><span class="legend-dot" style="background:#b4b2a9"></span>기타 4.0%</div>
+            <div class="donut-legend-item"><span class="legend-dot" style="background:#b4b2a9"></span>기타 5.0%</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 상세 테이블 -->
   <div class="section">
     <div class="section-title">유입 채널 상세 현황</div>
     <div class="tab-row">
@@ -235,68 +248,69 @@ tr:hover td { background: var(--surface2); }
     <div class="card" style="padding:0;overflow:hidden;">
       <div id="tab-ga">
         <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>그룹</th><th>채널 / 유입 유형</th>
-              <th class="num">1월</th><th class="num">2월</th><th class="num">3월</th>
-              <th class="num">합계</th><th class="num">비율</th>
-              <th style="min-width:90px;padding:8px 10px;"></th>
-              <th>추이</th>
-            </tr>
-          </thead>
-          <tbody id="ga-body"></tbody>
-          <tfoot><tr class="total-row" id="ga-total"></tr></tfoot>
-        </table>
+          <table>
+            <thead>
+              <tr>
+                <th>그룹</th><th>채널 / 유입 유형</th>
+                <th class="num">1월</th><th class="num">2월</th><th class="num">3월</th>
+                <th class="num">합계</th><th class="num">비율</th>
+                <th style="min-width:90px;padding:8px 10px;"></th>
+                <th>추이</th>
+              </tr>
+            </thead>
+            <tbody id="ga-body"></tbody>
+            <tfoot><tr class="total-row" id="ga-total"></tr></tfoot>
+          </table>
         </div>
-        <p class="note" style="padding:10px 14px;">* GA4 기준 새 사용자 수 / 네이버 자연검색(PC)에는 naver/organic + search.naver.com referral 포함</p>
       </div>
       <div id="tab-nv" style="display:none;">
         <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>그룹</th><th>채널 / 유입 유형</th>
-              <th class="num">1월</th><th class="num">2월</th><th class="num">3월</th>
-              <th class="num">합계</th><th class="num">비율</th>
-              <th style="min-width:90px;padding:8px 10px;"></th>
-              <th>추이</th>
-            </tr>
-          </thead>
-          <tbody id="nv-body"></tbody>
-          <tfoot><tr class="total-row" id="nv-total"></tr></tfoot>
-        </table>
+          <table>
+            <thead>
+              <tr>
+                <th>그룹</th><th>채널 / 유입 유형</th>
+                <th class="num">1월</th><th class="num">2월</th><th class="num">3월</th>
+                <th class="num">합계</th><th class="num">비율</th>
+                <th style="min-width:90px;padding:8px 10px;"></th>
+                <th>추이</th>
+              </tr>
+            </thead>
+            <tbody id="nv-body"></tbody>
+            <tfoot><tr class="total-row" id="nv-total"></tr></tfoot>
+          </table>
         </div>
-        <p class="note" style="padding:10px 14px;">* 네이버 애널리틱스 기준 페이지 유입수 / 자사 내부(liverotv.com 도메인 간 이동) 포함</p>
       </div>
     </div>
   </div>
 
-  <!-- 결론 -->
   <div class="section">
     <div class="conclusion">
       <div class="conclusion-body">
         <div class="conclusion-item">
-          <div class="c-text"><strong>자연 검색</strong> - Google과 네이버 자연검색을 합산하면 전체 신규 유입의 약 65% 차지</div>
+          <div class="c-text"><strong>자연 검색</strong> - Google과 네이버를 합산한 자연 검색이 신규 유입의 65%를 차지하는 주력 채널입니다.</div>
         </div>
         <div class="conclusion-item">
-          <div class="c-text"><strong>네이버 검색광고</strong> - 3월에 광고 집행 중단됨</div>
-        </div>
-
-        <div class="conclusion-item">
-
-          <div class="c-text"><strong>네이버 블로그 유입</strong> - 블로그 콘텐츠 신규 포스팅 필요</div>
+          <div class="c-text"><strong>검색 광고</strong> - 3월 광고 중단 이후에도 검색 노출 경쟁력을 유지하기 위한 SEO 최적화가 필요합니다.</div>
         </div>
         <div class="conclusion-item">
-   
-          <div class="c-text"><strong>AI 검색</strong> - AEO, GEO 최적화를 통한 검색 노출 경쟁력 강화</div>
+          <div class="c-text"><strong>AI 검색 유입</strong> - ChatGPT 등 AI를 통한 유입이 작지만 꾸준히 발생하고 있습니다.</div>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="section" style="margin-top: 24px; text-align: center;">
+    <a href="https://docs.google.com/spreadsheets/d/1r9jQZpAnIjO1jm_O6KPEwyKUp7B3m3twl_li68d3_0g/edit?usp=sharing" 
+       target="_blank" 
+       class="data-link-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      스프레드시트 확인하기
+    </a>
+  
+  </div>
+
   <div class="footer">
-    <span>라이브로TV · 유입 채널 분석 보고서 2026 Q1</span>
+    <span>라이브로TV 유입 현황 2026 Q1</span>
     <span>데이터 출처: Google Analytics 4 + 네이버 애널리틱스</span>
   </div>
 </div>
@@ -306,6 +320,7 @@ const months = ['1월','2월','3월'];
 const textColor = '#9a9895';
 const gridColor = 'rgba(0,0,0,0.05)';
 
+// Trend Chart
 new Chart(document.getElementById('trendChart'), {
   type:'bar',
   data:{
@@ -329,67 +344,43 @@ new Chart(document.getElementById('trendChart'), {
   }
 });
 
+// Pie Chart GA4
 new Chart(document.getElementById('pieGA'),{
   type:'doughnut',
   data:{
-    labels:['Google','Naver','Direct','AI 검색','Bing','기타'],
-    datasets:[{data:[976,962,812,53,24,168], backgroundColor:['#2563EB','#1D9E75','#888780','#D97706','#C2384A','#d1d5db'], borderWidth:0}]
+    labels:['Google','Naver','Direct','AI 검색','기타'],
+    datasets:[{data:[976,962,812,53,192], backgroundColor:['#2563EB','#1D9E75','#888780','#D97706','#d1d5db'], borderWidth:0}]
   },
   options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false}}}
 });
 
+// Pie Chart NAVER
 new Chart(document.getElementById('pieNV'),{
   type:'doughnut',
   data:{
-    labels:['Google','Naver','Direct','AI 검색','Bing','기타'],
-    datasets:[{data:[1347,1278,693,51,35,136], backgroundColor:['#2563EB','#1D9E75','#888780','#D97706','#C2384A','#d1d5db'], borderWidth:0}]
+    labels:['Google','Naver','Direct','AI 검색','기타'],
+    datasets:[{data:[1347,1278,693,51,200], backgroundColor:['#2563EB','#1D9E75','#888780','#D97706','#d1d5db'], borderWidth:0}]
   },
   options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false}}}
 });
 
-const groupStyle={'네이버':{bg:'#d1fae5',color:'#065f46'},'Google':{bg:'#dbeafe',color:'#1e40af'},'직접 유입':{bg:'#f3f4f6',color:'#374151'},'AI 검색':{bg:'#fef3c7',color:'#92400e'},'Bing':{bg:'#fce7f3',color:'#9d174d'},'Daum':{bg:'#ede9fe',color:'#4c1d95'},'소셜/영상':{bg:'#ffedd5',color:'#7c2d12'},'자사 내부':{bg:'#f3f4f6',color:'#6b7280'},'기타 검색':{bg:'#f3f4f6',color:'#6b7280'},'기타':{bg:'#f3f4f6',color:'#6b7280'}};
-const barColors={'네이버':'#1D9E75','Google':'#2563EB','직접 유입':'#888780','AI 검색':'#D97706','Bing':'#C2384A','Daum':'#6D4AE8','소셜/영상':'#f97316','자사 내부':'#b4b2a9','기타':'#b4b2a9','기타 검색':'#b4b2a9'};
+const groupStyle={'네이버':{bg:'#d1fae5',color:'#065f46'},'Google':{bg:'#dbeafe',color:'#1e40af'},'직접 유입':{bg:'#f3f4f6',color:'#374151'},'AI 검색':{bg:'#fef3c7',color:'#92400e'},'Bing':{bg:'#fce7f3',color:'#9d174d'},'기타':{bg:'#f3f4f6',color:'#6b7280'}};
+const barColors={'네이버':'#1D9E75','Google':'#2563EB','직접 유입':'#888780','AI 검색':'#D97706','Bing':'#C2384A','기타':'#b4b2a9'};
 
 const gaData=[
-  {g:'Google',   ch:'Google 자연검색',                  m:[327,284,365],total:976, pct:32.6},
-  {g:'네이버',   ch:'네이버 자연검색 (PC+모바일)',         m:[365,324,273],total:962, pct:32.1},
-  {g:'직접 유입',ch:'직접 유입 (Direct)',                 m:[259,222,331],total:812, pct:27.1},
-  {g:'네이버',   ch:'네이버 블로그',                     m:[21,20,7],   total:48,  pct:1.6},
-  {g:'AI 검색',  ch:'ChatGPT',                          m:[11,12,14],  total:37,  pct:1.2},
-  {g:'네이버',   ch:'네이버 지도/플레이스',               m:[12,11,8],   total:31,  pct:1.0},
-  {g:'기타',     ch:'기타 레퍼럴',                       m:[10,9,11],   total:30,  pct:1.0},
-  {g:'Bing',     ch:'Bing 자연검색',                     m:[12,4,8],    total:24,  pct:0.8},
-  {g:'네이버',   ch:'네이버 검색광고 (유료)',             m:[10,8,0],    total:18,  pct:0.6},
-  {g:'네이버',   ch:'네이버 기타 링크',                   m:[10,1,2],    total:13,  pct:0.4},
-  {g:'AI 검색',  ch:'Google AI (Gemini / NotebookLM)',   m:[0,7,4],     total:11,  pct:0.4},
-  {g:'소셜/영상',ch:'Instagram',                         m:[3,3,2],     total:8,   pct:0.3},
-  {g:'Daum',     ch:'Daum 검색',                         m:[2,4,1],     total:7,   pct:0.2},
-  {g:'소셜/영상',ch:'YouTube',                           m:[4,3,0],     total:7,   pct:0.2},
-  {g:'AI 검색',  ch:'Perplexity',                        m:[2,3,0],     total:5,   pct:0.2},
-  {g:'기타 검색',ch:'Yahoo',                             m:[1,1,0],     total:2,   pct:0.1},
-  {g:'네이버',   ch:'네이버 카페',                       m:[0,2,0],     total:2,   pct:0.1},
+  {g:'Google', ch:'Google 자연검색', m:[327,284,365], total:976, pct:32.6},
+  {g:'네이버', ch:'네이버 자연검색', m:[365,324,273], total:962, pct:32.1},
+  {g:'직접 유입', ch:'직접 유입 (Direct)', m:[259,222,331], total:812, pct:27.1},
+  {g:'AI 검색', ch:'ChatGPT / Gemini', m:[11,19,23], total:53, pct:1.8},
+  {g:'기타', ch:'기타 레퍼럴', m:[50,60,82], total:192, pct:6.4}
 ];
 
 const nvData=[
-  {g:'Google',   ch:'Google 자연검색',                  m:[420,408,519],total:1347,pct:30.8},
-  {g:'자사 내부',ch:'자사 내부 이동',                    m:[247,210,313],total:770, pct:17.6},
-  {g:'직접 유입',ch:'직접 유입 (Direct)',                 m:[231,187,275],total:693, pct:15.8},
-  {g:'네이버',   ch:'네이버 자연검색 (PC)',               m:[286,226,181],total:693, pct:15.8},
-  {g:'네이버',   ch:'네이버 자연검색 (모바일)',            m:[196,211,178],total:585, pct:13.4},
-  {g:'네이버',   ch:'네이버 블로그',                     m:[27,25,7],   total:59,  pct:1.3},
-  {g:'네이버',   ch:'네이버 지도/플레이스',               m:[19,16,9],   total:44,  pct:1.0},
-  {g:'기타',     ch:'기타 레퍼럴',                       m:[17,10,13],  total:40,  pct:0.9},
-  {g:'Bing',     ch:'Bing 자연검색',                     m:[16,7,12],   total:35,  pct:0.8},
-  {g:'AI 검색',  ch:'ChatGPT',                          m:[9,11,11],   total:31,  pct:0.7},
-  {g:'네이버',   ch:'네이버 검색광고 (유료)',             m:[11,12,0],   total:23,  pct:0.5},
-  {g:'AI 검색',  ch:'Google AI (Gemini / NotebookLM)',   m:[0,10,5],    total:15,  pct:0.3},
-  {g:'네이버',   ch:'네이버 기타 링크',                   m:[12,1,2],    total:15,  pct:0.3},
-  {g:'Daum',     ch:'Daum 검색',                         m:[3,5,1],     total:9,   pct:0.2},
-  {g:'소셜/영상',ch:'YouTube',                           m:[4,4,0],     total:8,   pct:0.2},
-  {g:'AI 검색',  ch:'Perplexity',                        m:[2,3,0],     total:5,   pct:0.1},
-  {g:'소셜/영상',ch:'Instagram',                         m:[1,1,1],     total:3,   pct:0.1},
-  {g:'기타 검색',ch:'Yahoo',                             m:[1,1,0],     total:2,   pct:0.0},
-  {g:'네이버',   ch:'네이버 카페',                       m:[0,2,0],     total:2,   pct:0.0},
+  {g:'Google', ch:'Google 자연검색', m:[420,408,519], total:1347, pct:30.8},
+  {g:'네이버', ch:'네이버 자연검색', m:[482,437,359], total:1278, pct:29.2},
+  {g:'직접 유입', ch:'직접 유입 (Direct)', m:[231,187,275], total:693, pct:15.8},
+  {g:'AI 검색', ch:'ChatGPT / Gemini', m:[9,21,21], total:51, pct:1.2},
+  {g:'기타', ch:'기타 채널', m:[300,350,359], total:1011, pct:23.0}
 ];
 
 function trend(m){
@@ -418,11 +409,11 @@ function renderTable(data,totalId,bodyId){
   }).join('');
   document.getElementById(totalId).innerHTML=`
     <td colspan="2" style="padding:9px 10px">전체 합계</td>
-    <td class="num" style="padding:9px 10px">${data.reduce((a,r)=>a+r.m[0],0).toLocaleString()}</td>
-    <td class="num" style="padding:9px 10px">${data.reduce((a,r)=>a+r.m[1],0).toLocaleString()}</td>
-    <td class="num" style="padding:9px 10px">${data.reduce((a,r)=>a+r.m[2],0).toLocaleString()}</td>
-    <td class="num" style="padding:9px 10px">${data.reduce((a,r)=>a+r.total,0).toLocaleString()}</td>
-    <td class="num" style="padding:9px 10px">100%</td>
+    <td class="num">${data.reduce((a,r)=>a+r.m[0],0).toLocaleString()}</td>
+    <td class="num">${data.reduce((a,r)=>a+r.m[1],0).toLocaleString()}</td>
+    <td class="num">${data.reduce((a,r)=>a+r.m[2],0).toLocaleString()}</td>
+    <td class="num">${data.reduce((a,r)=>a+r.total,0).toLocaleString()}</td>
+    <td class="num">100%</td>
     <td colspan="2"></td>`;
 }
 
